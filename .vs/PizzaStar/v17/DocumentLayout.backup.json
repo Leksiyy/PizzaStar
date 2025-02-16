@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|c:\\users\\leonid\\desktop\\pizzastar\\pizzastar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|solutionrelative:pizzastar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|c:\\users\\leonid\\desktop\\pizzastar\\pizzastar\\data\\dbinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|solutionrelative:pizzastar\\data\\dbinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|c:\\users\\leonid\\desktop\\pizzastar\\pizzastar\\views\\dish\\editproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|solutionrelative:pizzastar\\views\\dish\\editproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|c:\\users\\leonid\\desktop\\pizzastar\\pizzastar\\repository\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|solutionrelative:pizzastar\\repository\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|c:\\users\\leonid\\desktop\\pizzastar\\pizzastar\\views\\dish\\createproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0C442F64-0D09-46E0-8ADF-A5F571BEBB6C}|PizzaStar\\PizzaStar.csproj|solutionrelative:pizzastar\\views\\dish\\createproduct.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Program.cs",
+              "RelativeDocumentMoniker": "PizzaStar\\Program.cs",
+              "ToolTip": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Program.cs",
+              "RelativeToolTip": "PizzaStar\\Program.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAEUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T18:00:05.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DbInit.cs",
+              "DocumentMoniker": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Data\\DbInit.cs",
+              "RelativeDocumentMoniker": "PizzaStar\\Data\\DbInit.cs",
+              "ToolTip": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Data\\DbInit.cs*",
+              "RelativeToolTip": "PizzaStar\\Data\\DbInit.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T17:58:02.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EditProduct.cshtml",
+              "DocumentMoniker": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Views\\Dish\\EditProduct.cshtml",
+              "RelativeDocumentMoniker": "PizzaStar\\Views\\Dish\\EditProduct.cshtml",
+              "ToolTip": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Views\\Dish\\EditProduct.cshtml",
+              "RelativeToolTip": "PizzaStar\\Views\\Dish\\EditProduct.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAYwGEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-05T17:52:13.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Repository\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "PizzaStar\\Repository\\CategoryRepository.cs",
+              "ToolTip": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Repository\\CategoryRepository.cs",
+              "RelativeToolTip": "PizzaStar\\Repository\\CategoryRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T17:50:58.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateProduct.cshtml",
+              "DocumentMoniker": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Views\\Dish\\CreateProduct.cshtml",
+              "RelativeDocumentMoniker": "PizzaStar\\Views\\Dish\\CreateProduct.cshtml",
+              "ToolTip": "C:\\Users\\Leonid\\Desktop\\PizzaStar\\PizzaStar\\Views\\Dish\\CreateProduct.cshtml",
+              "RelativeToolTip": "PizzaStar\\Views\\Dish\\CreateProduct.cshtml",
+              "ViewState": "AgIAACYAAAAAAAAAAAAYwDQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-05T17:49:23.627Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
