@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
 
 IConfigurationRoot _confString = new ConfigurationBuilder().
     SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
@@ -20,30 +22,26 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 builder.Services.AddIdentity<User, IdentityRole>(opts =>
 {
-    opts.Password.RequiredLength = 5;   // минимальная длина
-    opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
-    opts.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
-    opts.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
-    opts.Password.RequireDigit = false; // требуются ли цифры
+    opts.Password.RequiredLength = 5;
+    opts.Password.RequireNonAlphanumeric = false;
+    opts.Password.RequireLowercase = false;
+    opts.Password.RequireUppercase = false;
+    opts.Password.RequireDigit = false;
 }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 
-
-//Парсинг конфигурации почты и добавление в сервисы
 var emailConfig = builder.Configuration
         .GetSection("EmailConfiguration")
         .Get<EmailConfiguration>();
 builder.Services.AddSingleton(emailConfig!);
 
-
-//Подключаем сервис для отправки почты
 builder.Services.AddScoped<EmailSender>();
 
-
-//Время существования токена, для восстановления пароля - 1 час.
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opts => opts.TokenLifespan = TimeSpan.FromHours(1));
 
 builder.Services.AddScoped<ICategory, CategoryRepository>();
 builder.Services.AddScoped<IProduct, ProductRepository>();
+builder.Services.AddScoped(e => CartRepository.GetCart(e));
+builder.Services.AddTransient<IOrder, OrderRepository>();
 
 var app = builder.Build();
 
@@ -77,6 +75,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseSession(); 
 
 app.UseHttpsRedirection();
 app.UseRouting();

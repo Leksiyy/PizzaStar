@@ -15,7 +15,16 @@ namespace PizzaStar.Interfaces
             _applicationContext = applicationContext;
         }
 
+        public async Task<IEnumerable<Product>> GetEightRandomProductsAsync(int productId)
+        {
+            return await _applicationContext.Products.Where(p => p.Id != productId).OrderBy(p => Guid.NewGuid()).Take(8).ToListAsync();
+        }
 
+        public PagedList<Product> GetAllProductsByCategory(QueryOptions options, int categoryId)
+        {
+            return new PagedList<Product>(_applicationContext.Products.Include(p => p.Category).Where(p => p.CategoryId == categoryId), options);
+        }
+        
         public PagedList<Product> GetAllProducts(QueryOptions options)
         {
             return new PagedList<Product>(_applicationContext.Products.Include(e => e.Category), options);
