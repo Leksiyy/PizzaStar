@@ -34,6 +34,9 @@ namespace PizzaStar.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердить пароль")]
         public string? PasswordConfirm { get; set; }
+
+        [Required(ErrorMessage = "Пройдите проверку на робота")]
+        public string? ReCaptchaResponse { get; set; }
     }
 
 }

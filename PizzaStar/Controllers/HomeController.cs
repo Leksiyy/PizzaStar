@@ -60,5 +60,25 @@ namespace PizzaStar.Controllers
 
             return NotFound();
         }
+
+        [Route("/contact")]
+        [HttpGet]
+        public IActionResult Contact(string? ReturnUrl)
+        {
+            return View(new ContactFormViewModel
+            {
+                ReturnUrl = ReturnUrl
+            });
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Contact(ContactFormViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                
+            }
+        }
     }
 }

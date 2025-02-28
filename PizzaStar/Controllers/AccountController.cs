@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaStar.Data.Helpers;
 using PizzaStar.Models;
+using PizzaStar.Services;
 using PizzaStar.ViewModels;
 
 namespace PizzaStar.Controllers
@@ -12,12 +13,14 @@ namespace PizzaStar.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly EmailSender _emailSender;
+        private readonly ReCaptchaService _reCaptchaService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, EmailSender emailSender)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, EmailSender emailSender, ReCaptchaService reCaptchaService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _reCaptchaService = reCaptchaService;
         }
 
 
@@ -118,28 +121,33 @@ namespace PizzaStar.Controllers
 
         [Route("register")]
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
+        // [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
-        {
+        {   
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, Year = model.Year, PhoneNumber = model.Phone };
-                // добавляем пользователя
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var isCaptchaValid = await _reCaptchaService.ValidateCaptchaAsync(model.ReCaptchaResponse);
+                if (isCaptchaValid)
                 {
-                    //Установки роли. Сама роль находится в таблице AspNetRoles
-                    //если таблица пустая, получим ошибку. Обязательно заполняем роли!
-                    result = await _userManager.AddToRoleAsync(user, "Client");
-                    // установка куки
-                    await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    foreach (var error in result.Errors)
+                    User user = new User { Email = model.Email, UserName = model.Email, Year = model.Year, PhoneNumber = model.Phone };
+                    // добавляем пользователя
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
                     {
-                        ModelState.AddModelError(string.Empty, error.Description);
+                        //Установки роли. Сама роль находится в таблице AspNetRoles
+                        //если таблица пустая, получим ошибку. Обязательно заполняем роли!
+                        result = await _userManager.AddToRoleAsync(user, "Client");
+                        // установка куки
+                        await _signInManager.SignInAsync(user, false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                        ModelState.AddModelError(string.Empty, "Ошибка проверки CAPTCHA. Попробуйте снова.");
                     }
                 }
             }

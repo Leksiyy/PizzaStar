@@ -5,6 +5,7 @@ using PizzaStar.Data.Helpers;
 using PizzaStar.Interfaces;
 using PizzaStar.Models;
 using PizzaStar.Repository;
+using PizzaStar.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<ReCaptchaService>();
 
 IConfigurationRoot _confString = new ConfigurationBuilder().
     SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();

@@ -493,3 +493,4 @@ D:\dev\rider\ExamStarPizza\PizzaStar\PizzaStar\obj\Debug\net9.0\refint\PizzaStar
 D:\dev\rider\ExamStarPizza\PizzaStar\PizzaStar\obj\Debug\net9.0\PizzaStar.pdb
 D:\dev\rider\ExamStarPizza\PizzaStar\PizzaStar\obj\Debug\net9.0\PizzaStar.genruntimeconfig.cache
 D:\dev\rider\ExamStarPizza\PizzaStar\PizzaStar\obj\Debug\net9.0\ref\PizzaStar.dll
+D:\dev\rider\ExamStarPizza\PizzaStar\PizzaStar\bin\Debug\net9.0\Newtonsoft.Json.dll

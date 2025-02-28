@@ -108,7 +108,38 @@ namespace PizzaStar.Data.Helpers
             return Send(message);
         }
 
+        public bool SendClientMessage(string clientEmail, string clientName, string messageText)
+        {
+            var message = new MimeMessage();
+    
+            // От кого (клиент)
+            message.From.Add(new MailboxAddress(clientName, clientEmail));
 
+            // Кому (администратор)
+            message.To.Add(new MailboxAddress("Admin", "admin@example.com"));
+
+            // Тема письма
+            message.Subject = $"Сообщение от клиента {clientName}";
+
+            // Тело письма
+            message.Body = new TextPart("html")
+            {
+                Text = $@"
+            <html>
+            <body>
+                <h2>Новое сообщение от клиента</h2>
+                <p><strong>Имя:</strong> {clientName}</p>
+                <p><strong>Email:</strong> {clientEmail}</p>
+                <p><strong>Сообщение:</strong></p>
+                <p>{messageText}</p>
+            </body>
+            </html>"
+            };
+
+            return Send(message);
+        }
+
+        
         private bool Send(MimeMessage message)
         {
             using (var client = new SmtpClient())
