@@ -71,14 +71,15 @@ namespace PizzaStar.Controllers
             });
         }
 
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult Contact(ContactFormViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                
-            }
-        }
+        //
+        // [HttpPost]
+        // [AutoValidateAntiforgeryToken]
+        // public IActionResult Contact(ContactFormViewModel model)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         
+        //     }
+        // }
     }
 }
