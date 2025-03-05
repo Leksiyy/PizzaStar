@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PizzaStar.Data;
 using PizzaStar.Models;
 using PizzaStar.Models.Pages;
 using PizzaStar.ViewModels;
@@ -13,10 +14,12 @@ namespace PizzaStar.Controllers
 
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public PanelController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        private readonly ApplicationContext _context;
+        public PanelController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, ApplicationContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
         }
 
 
@@ -208,6 +211,48 @@ namespace PizzaStar.Controllers
         {
             return View();
         }
-    }
 
+        [Authorize(Roles = "Admin")]
+        [Route("/panel/set-contact")] 
+        [HttpGet]
+        public IActionResult Contact(QueryOptions options)
+        {
+            var pagedList = new PagedList<Contact>(_context.Contacts, options);
+            return View(pagedList);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> CreateContact(string email)
+        {
+            if (ModelState.IsValid)
+            {
+                await _context.Contacts.AddAsync(new Contact{Email = email});
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Contact));
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete]
+        [Route("/panel/delete-contact")]
+        public IActionResult DeleteContact(string id)
+        {
+            if (!int.TryParse(id, out int contactId))
+            {
+                return BadRequest("Некорректный ID");
+            }
+
+            var email = _context.Contacts.Find(contactId);
+            if (email == null)
+            {
+                return NotFound("Email не найден");
+            }
+
+            _context.Contacts.Remove(email);
+            _context.SaveChanges();
+
+            return Ok(new { message = "Email удалён успешно" });
+        }
+    }
 }

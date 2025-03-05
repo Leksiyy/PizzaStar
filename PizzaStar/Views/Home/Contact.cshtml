@@ -1,16 +1,5 @@
-﻿
+﻿@model ContactFormViewModel;
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 contact-left">
         <h3 class="contact-title">Our Location</h3>
@@ -49,27 +38,27 @@
                 <div class="form-group required row">
                     <label class="col-sm-2 control-label" for="input-name">Your Name</label>
                     <div class="col-sm-10">
-                        <input type="text" id="input-name" class="form-control" required>
+                        <input type="text" id="input-name" class="form-control" required asp-for="Name">
                     </div>
                 </div>
                 <div class="form-group required row">
                     <label class="col-sm-2 control-label" for="input-email">E-Mail
                         Address</label>
                     <div class="col-sm-10">
-                        <input type="text" id="input-email" class="form-control" required>
+                        <input type="text" id="input-email" class="form-control" required asp-for="Email">
                     </div>
                 </div>
                 <div class="form-group required row">
                     <label class="col-sm-2 control-label" for="input-">Phone Number</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" required asp-for="PhoneNumber">
                     </div>
                 </div>
                 <div class="form-group required row">
                     <label class="col-sm-2 control-label" for="input-enquiry">Enquiry</label>
                     <div class="col-sm-10">
-											<textarea name="enquiry" rows="10" id="input-enquiry" class="form-control"
-                                                      required></textarea>
+					    <textarea name="enquiry" rows="10" id="input-enquiry" class="form-control"
+                                  required asp-for="Enquiry"></textarea>
                     </div>
                 </div>
                 <div class="form-group required row form-message ">
@@ -84,5 +73,3 @@
         </form>
     </div>
 </div>
-</body>
-</html>

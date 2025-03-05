@@ -18,6 +18,7 @@ namespace PizzaStar.Data
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<ShopCartItem> ShopCartItems { get; set; } = null!;
         public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<Contact> Contacts { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ShopCartItem>()

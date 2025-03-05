@@ -1,0 +1,99 @@
+@{
+    Layout = "_PanelLayout.cshtml";
+    ViewData["Title"] = "Пользователи";
+}
+@model IEnumerable<Contact>
+
+<div class="breadcrumb-main">
+    <div class="breadcrumb-container clearfix">
+        <h1 class="page-title">Панель управления</h1>
+        <ul class="breadcrumb">
+            <li><a asp-action="Index" asp-controller="Panel">Главная</a></li>
+            <li><a asp-action="Contact" asp-controller="Panel">Контактная информация</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row g-4 py-5 row-cols-1">
+
+    <form method="post" asp-action="CreateContact" asp-controller="Panel" class="row">
+        <input type="email" name="Email" class="form-control mb-3" placeholder="your email" required>
+        <button type="submit" class="btn btn-primary">Добавить новый контактный адрес эл. почты</button>
+    </form>
+
+    <div class="input-group themability-search">
+        @{
+            ViewBag.searches = new string[] { "Email" };
+        }
+        @await Html.PartialAsync("_SearchOptions", Model)
+    </div>
+
+
+    <div class="p-5 mb-4 bg-light rounded-3 ovx table-responsive">
+        <table class="table">
+            <tr><th>Email</th><th></th><th>
+            @foreach (var email in Model)
+            {
+                @*Обязательно прописываем данный атрибут
+            С помощью него мы удалим данную строку,
+            используя JavaScript*@
+                <tr data-rowid="@email.Id">
+                    <td>@email.Email</td>
+                    <td>
+                        @*Обязательно прописываем onClick и метод, который будет обрабатывать клик*@
+                        <button onclick="deleteEmail('@email.Id')" class="btn btn-sm btn-danger">Удалить</button>
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+        <div class="text-center">
+            @await Html.PartialAsync("_Pages", Model)
+        </div>
+
+
+        @await Html.PartialAsync("_Modal", "Удалить выбранный email?")
+
+
+        @section Scripts {
+            <script>
+                async function deleteEmail(emailId) {
+
+
+                    const btnYes = document.getElementById('btn-Yes');
+                    const btnNo = document.getElementById('btn-No');
+
+
+                    $('#confirmModal').modal('show');
+
+
+                    //Если нажали да, удаляем
+                    btnYes.onclick = () => {
+                        const deleteItem = fetch(`/panel/delete-contact/?id=${emailId}`, { method: 'DELETE' })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                //Удаляем строку
+                                document.querySelector("tr[data-rowid='" + emailId + "']").remove();
+                                //Закрываем модальное окно
+                                $('#confirmModal').modal('hide');
+                            })
+                            .catch(error => {
+                                console.error('There was a problem with the fetch operation:', error);
+                                // Обработка ошибки удаления
+                            });
+                    }
+                    //Если нажали нет, скрываем
+                    btnNo.onclick = () => {
+                        $('#confirmModal').modal('hide');
+                    }
+                }
+            </script>
+        }
+
+
+    </div>
+</div>

@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using PizzaStar.Data;
 using PizzaStar.Interfaces;
 using PizzaStar.Models;
 using PizzaStar.Models.Pages;
 using PizzaStar.ViewModels;
+using PizzaStar.Data.Helpers;
 
 namespace PizzaStar.Controllers
 {
@@ -11,11 +13,15 @@ namespace PizzaStar.Controllers
     {
         private readonly IProduct _products;
         private readonly ICategory _categories;
+        private readonly EmailSender _emailSender;
+        private readonly ApplicationContext _context;
 
-        public HomeController(IProduct products, ICategory categories)
+        public HomeController(IProduct products, ICategory categories, EmailSender emailSender, ApplicationContext context)
         {
             _products = products;
             _categories = categories;
+            _emailSender = emailSender;
+            _context = context;
         }
 
         [Route("/")]
@@ -71,15 +77,17 @@ namespace PizzaStar.Controllers
             });
         }
 
-        //
-        // [HttpPost]
-        // [AutoValidateAntiforgeryToken]
-        // public IActionResult Contact(ContactFormViewModel model)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         
-        //     }
-        // }
+        
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Contact(ContactFormViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                List<string> adminEmails = _context.Contacts.Select(c => c.Email).ToList();
+                _emailSender.SendClientMessage(model.Email, model.Name, model.Enquiry, adminEmails);
+            }
+            return View("Index");
+        }
     }
 }
