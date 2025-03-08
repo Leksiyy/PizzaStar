@@ -1,0 +1,55 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    Layout = "_PanelLayout.cshtml";
+    ViewData["Title"] = "Управление ролями";
+}
+
+<div class="breadcrumb-main">
+    <div class="breadcrumb-container clearfix">
+        <h1 class="page-title">Панель управления</h1>
+        <ul class="breadcrumb">
+            <li><a asp-action="Index" asp-controller="Panel">Главная</a></li>
+            <li><a asp-action="Index" asp-controller="Role">Менеджер ролями</a></li>
+        </ul>
+    </div>
+</div>
+
+<form asp-controller="Role" asp-action="Create" method="post" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="roleName" class="form-control" placeholder="Название роли" required />
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>@role.Name</td>
+            <td>
+                <div class="d-flex">
+                    <form asp-controller="Role" asp-action="Edit" method="post" class="d-flex flex-grow-1">
+                        <input type="hidden" name="roleId" value="@role.Id" />
+                        <input type="text" name="newRoleName" class="form-control flex-grow-1" placeholder="Новое имя" required />
+                        <button type="submit" class="btn btn-warning me-2">Изменить</button>
+                    </form>
+
+                    <form asp-controller="Role" asp-action="Delete" method="post" class="d-inline">
+                        <input type="hidden" name="roleId" value="@role.Id" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Удалить роль?')">Удалить</button>
+                    </form>
+                </div>
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
